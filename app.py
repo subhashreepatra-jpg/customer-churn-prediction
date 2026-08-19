@@ -2,7 +2,6 @@ import streamlit as st
 import joblib
 import pandas as pd
 
-# Load trained model and encoders
 model = joblib.load("customer_churn_model.pkl")
 gender_encoder = joblib.load("gender_encoder.pkl")
 geography_encoder = joblib.load("geography_encoder.pkl")
@@ -18,41 +17,25 @@ st.write("Predict whether a banking customer is likely to stay or churn.")
 
 st.subheader("Enter Customer Details")
 
-credit_score = st.number_input(
-    "Credit Score", min_value=300, max_value=900, value=650
-)
+credit_score = st.number_input("Credit Score", min_value=300, max_value=900, value=650)
 
-geography = st.selectbox(
-    "Geography", ["France", "Germany", "Spain"]
-)
+geography = st.selectbox("Geography", ["France", "Germany", "Spain"])
 
-gender = st.selectbox(
-    "Gender", ["Male", "Female"]
-)
+gender = st.selectbox("Gender", ["Male", "Female"])
 
-age = st.number_input(
-    "Age", min_value=18, max_value=100, value=35
-)
+age = st.number_input("Age", min_value=18, max_value=100, value=35)
 
-tenure = st.number_input(
-    "Tenure", min_value=0, max_value=10, value=5
-)
+tenure = st.number_input("Tenure", min_value=0, max_value=10, value=5)
 
-balance = st.number_input(
-    "Balance", min_value=0.0, value=50000.0
-)
+balance = st.number_input("Balance", min_value=0.0, value=50000.0)
 
 num_products = st.number_input(
     "Number of Products", min_value=1, max_value=4, value=1
 )
 
-has_cr_card = st.selectbox(
-    "Has Credit Card?", ["Yes", "No"]
-)
+has_cr_card = st.selectbox("Has Credit Card?", ["Yes", "No"])
 
-active_member = st.selectbox(
-    "Is Active Member?", ["Yes", "No"]
-)
+active_member = st.selectbox("Is Active Member?", ["Yes", "No"])
 
 estimated_salary = st.number_input(
     "Estimated Salary", min_value=0.0, value=50000.0
@@ -79,9 +62,6 @@ if st.button("Predict Churn"):
         "IsActiveMember": active_member_value,
         "EstimatedSalary": estimated_salary
     }])
-
-    st.write("Model expects:", model.feature_names_in_.tolist())
-    st.write("App provides:", input_data.columns.tolist())
 
     prediction = model.predict(input_data)[0]
 
