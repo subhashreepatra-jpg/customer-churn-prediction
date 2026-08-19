@@ -1,16 +1,16 @@
 import streamlit as st
-import pickle
+import joblib
 import pandas as pd
 
 # Load trained model and encoders
 with open("customer_churn_model.pkl", "rb") as file:
-    model = pickle.load(file)
+    model = joblib.load(file)
 
 with open("gender_encoder.pkl", "rb") as file:
-    gender_encoder = pickle.load(file)
+    gender_encoder = joblib.load(file)
 
 with open("geography_encoder.pkl", "rb") as file:
-    geography_encoder = pickle.load(file)
+    geography_encoder = joblib.load(file)
 
 # Page configuration
 st.set_page_config(
