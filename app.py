@@ -63,7 +63,8 @@ if st.button("Predict Churn"):
         "EstimatedSalary": estimated_salary
     }])
 
-    prediction = model.predict(input_data)[0]
+    prediction_result = model.predict(input_data)
+prediction = prediction_result[0]
 
     if prediction == 1:
         st.error("🔴 Customer is likely to churn.")
