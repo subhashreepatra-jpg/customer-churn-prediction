@@ -3,7 +3,7 @@ import pickle
 import pandas as pd
 
 # Load trained model and encoders
-with open("customer churn model.pkl", "rb") as file:
+with open("customer_churn_model.pkl", "rb") as file:
     model = pickle.load(file)
 
 with open("gender_encoder.pkl", "rb") as file:
