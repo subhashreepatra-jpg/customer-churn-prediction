@@ -50,7 +50,6 @@ if st.button("Predict Churn"):
     active_member_value = 1 if active_member == "Yes" else 0
 
     input_data = pd.DataFrame([{
-        "year": 2026,
         "CreditScore": credit_score,
         "Geography": geography_encoded,
         "Gender": gender_encoded,
