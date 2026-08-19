@@ -104,6 +104,9 @@ if st.button("Predict Churn"):
         "IsActiveMember": active_member_value,
         "EstimatedSalary": estimated_salary
     }])
+    
+st.write("Model expects:", model.feature_names_in_.tolist())
+st.write("App provides:", input_data.columns.tolist())
 
     prediction = model.predict(input_data)[0]
 
