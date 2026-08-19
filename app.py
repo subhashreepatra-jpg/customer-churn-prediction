@@ -3,16 +3,10 @@ import joblib
 import pandas as pd
 
 # Load trained model and encoders
-with open("customer_churn_model.pkl", "rb") as file:
-    model = joblib.load(file)
+model = joblib.load("customer_churn_model.pkl")
+gender_encoder = joblib.load("gender_encoder.pkl")
+geography_encoder = joblib.load("geography_encoder.pkl")
 
-with open("gender_encoder.pkl", "rb") as file:
-    gender_encoder = joblib.load(file)
-
-with open("geography_encoder.pkl", "rb") as file:
-    geography_encoder = joblib.load(file)
-
-# Page configuration
 st.set_page_config(
     page_title="Customer Churn Prediction",
     page_icon="🏦",
@@ -25,63 +19,43 @@ st.write("Predict whether a banking customer is likely to stay or churn.")
 st.subheader("Enter Customer Details")
 
 credit_score = st.number_input(
-    "Credit Score",
-    min_value=300,
-    max_value=900,
-    value=650
+    "Credit Score", min_value=300, max_value=900, value=650
 )
 
 geography = st.selectbox(
-    "Geography",
-    ["France", "Germany", "Spain"]
+    "Geography", ["France", "Germany", "Spain"]
 )
 
 gender = st.selectbox(
-    "Gender",
-    ["Male", "Female"]
+    "Gender", ["Male", "Female"]
 )
 
 age = st.number_input(
-    "Age",
-    min_value=18,
-    max_value=100,
-    value=35
+    "Age", min_value=18, max_value=100, value=35
 )
 
 tenure = st.number_input(
-    "Tenure",
-    min_value=0,
-    max_value=10,
-    value=5
+    "Tenure", min_value=0, max_value=10, value=5
 )
 
 balance = st.number_input(
-    "Balance",
-    min_value=0.0,
-    value=50000.0
+    "Balance", min_value=0.0, value=50000.0
 )
 
 num_products = st.number_input(
-    "Number of Products",
-    min_value=1,
-    max_value=4,
-    value=1
+    "Number of Products", min_value=1, max_value=4, value=1
 )
 
 has_cr_card = st.selectbox(
-    "Has Credit Card?",
-    ["Yes", "No"]
+    "Has Credit Card?", ["Yes", "No"]
 )
 
 active_member = st.selectbox(
-    "Is Active Member?",
-    ["Yes", "No"]
+    "Is Active Member?", ["Yes", "No"]
 )
 
 estimated_salary = st.number_input(
-    "Estimated Salary",
-    min_value=0.0,
-    value=50000.0
+    "Estimated Salary", min_value=0.0, value=50000.0
 )
 
 if st.button("Predict Churn"):
@@ -111,6 +85,6 @@ if st.button("Predict Churn"):
     prediction = model.predict(input_data)[0]
 
     if prediction == 1:
-        st.error("⚠️ Customer is likely to CHURN.")
+        st.error("🔴 Customer is likely to churn.")
     else:
-        st.success("✅ Customer is likely to STAY.")
+        st.success("🟢 Customer is likely to stay.")
