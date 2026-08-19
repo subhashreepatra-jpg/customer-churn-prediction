@@ -2,7 +2,7 @@ import streamlit as st
 import joblib
 import pandas as pd
 
-model = joblib.load("customer_churn_model.pkl")
+model = joblib.load("customer churn model.pkl")
 gender_encoder = joblib.load("gender_encoder.pkl")
 geography_encoder = joblib.load("geography_encoder.pkl")
 
